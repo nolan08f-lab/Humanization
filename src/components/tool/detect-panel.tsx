@@ -94,7 +94,7 @@ export function DetectPanel() {
           footer={
             <div className="flex w-full flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-500">
-                Analyse stylométrique par Claude
+                Analyse stylométrique par IA
                 <HelpBubble>
                   Le score est une estimation basée sur le style (rythme, tournures, vocabulaire). Aucun détecteur n'est
                   fiable à 100 % : ne l'utilise jamais comme preuve.

@@ -6,7 +6,7 @@ import { useTool } from "@/components/tool/tool-context"
 const STEPS = [
   { h: "Dépose ton PDF", d: "Glisse ton document dans la zone.", side: "left" },
   { h: "On lit le texte", d: "Directement dans ton navigateur.", side: "right" },
-  { h: "Claude l'analyse", d: "Chaque phrase reçoit un score.", side: "left" },
+  { h: "L'IA l'analyse", d: "Chaque phrase reçoit un score.", side: "left" },
   { h: "Ton score détaillé", d: "Score global et passages surlignés.", side: "right", green: true },
 ] as const
 

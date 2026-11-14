@@ -16,12 +16,17 @@ const TABS: { id: ToolTab; label: string; badge?: string }[] = [
 
 function EngineStatus() {
   const status = useServerFn(getEngineStatus)
-  const [state, setState] = useState<{ configured: boolean; model: string } | null>(null)
+  const [state, setState] = useState<Awaited<ReturnType<typeof getEngineStatus>> | null>(null)
   useEffect(() => {
-    status().then(setState).catch(() => setState({ configured: false, model: "" }))
+    const load = () => status().then(setState).catch(() => {})
+    load()
+    // revérifie régulièrement : utile quand on lance Ollama après avoir ouvert la page
+    const id = setInterval(load, 10000)
+    return () => clearInterval(id)
   }, [status])
 
-  const ok = state?.configured
+  const ok = state?.ready
+  const name = state?.provider === "claude" ? "Claude" : "Ollama"
   return (
     <Tooltip>
       <TooltipTrigger
@@ -41,13 +46,11 @@ function EngineStatus() {
         />
         <span className="hidden sm:inline">Moteur :</span>
         <span className={cn("hidden font-semibold sm:inline", ok ? "text-indigo-600" : "text-rose-600")}>
-          {state === null ? "…" : ok ? "Claude" : "Clé manquante"}
+          {state === null ? "…" : ok ? name : `${name} hors ligne`}
         </span>
       </TooltipTrigger>
       <TooltipContent side="bottom" className="max-w-xs text-left leading-relaxed">
-        {ok
-          ? `Connecté à l'API Anthropic (modèle ${state?.model}).`
-          : "Ajoute ANTHROPIC_API_KEY=... dans le fichier .env à la racine du projet, puis relance npm run dev."}
+        {state?.message ?? "Vérification du moteur…"}
       </TooltipContent>
     </Tooltip>
   )

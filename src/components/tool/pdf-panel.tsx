@@ -142,8 +142,7 @@ export function PdfPanel() {
           <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
             <FileTextIcon className="size-8 text-gray-300" />
             <span className="max-w-xs text-sm text-gray-400 sm:text-base">
-              Le contenu de ton PDF apparaîtra ici. Le fichier ne quitte pas ton ordinateur : seul le texte est envoyé à
-              Claude quand tu lances une analyse.
+              Le contenu de ton PDF apparaîtra ici. Tout est traité sur ton ordinateur.
             </span>
           </div>
         )}

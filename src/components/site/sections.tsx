@@ -187,7 +187,7 @@ export function Features() {
               {[
                 {
                   t: "Analyse phrase par phrase",
-                  d: "Un score global, les phrases surlignées selon leur probabilité et les indices de style relevés par Claude.",
+                  d: "Un score global, les phrases surlignées selon leur probabilité et les indices de style relevés par l'IA.",
                 },
                 {
                   t: "Tranquillité d'esprit",
@@ -216,7 +216,7 @@ export function Features() {
 const FAQ = [
   {
     q: "Comment fonctionne l'humanisation ?",
-    a: "Ton texte est envoyé à Claude (Anthropic) avec des consignes d'écriture : varier le rythme des phrases, supprimer les tournures stéréotypées et le vocabulaire pompeux, tout en gardant exactement le sens, les faits et les chiffres. Tu choisis le ton et l'intensité de la réécriture.",
+    a: "Ton texte est envoyé à un modèle d'IA local (Ollama) avec des consignes d'écriture : varier le rythme des phrases, supprimer les tournures stéréotypées et le vocabulaire pompeux, tout en gardant exactement le sens, les faits et les chiffres. Tu choisis le ton et l'intensité de la réécriture.",
   },
   {
     q: "Le détecteur IA est-il fiable ?",
@@ -224,7 +224,7 @@ const FAQ = [
   },
   {
     q: "Mes textes et mes PDF sont-ils stockés ?",
-    a: "Non. L'application tourne sur ton ordinateur et ne garde rien. Les PDF sont lus directement dans ton navigateur ; seul le texte que tu choisis d'analyser ou de réécrire est envoyé à l'API Anthropic.",
+    a: "Non. Tout tourne sur ton ordinateur : les PDF sont lus dans ton navigateur et le modèle Ollama fonctionne en local. Rien n'est envoyé sur internet ni conservé.",
   },
   {
     q: "Quelles langues sont prises en charge ?",
@@ -232,11 +232,11 @@ const FAQ = [
   },
   {
     q: "Pourquoi une limite de 2 000 mots ?",
-    a: "Pour garder des réponses rapides et un coût maîtrisé par requête. Pour un long document, traite-le section par section.",
+    a: "Un modèle local traite les longs textes lentement et perd en qualité. Pour un long document, traite-le section par section.",
   },
   {
-    q: "Comment configurer la clé API ?",
-    a: "Crée un fichier .env à la racine du projet avec la ligne ANTHROPIC_API_KEY=ta_clé, puis relance npm run dev. L'indicateur « Moteur » en haut de l'outil passe alors à « Claude ».",
+    q: "Comment installer le moteur IA ?",
+    a: "Installe Ollama depuis ollama.com, puis lance « ollama pull qwen3:8b » dans un terminal. L'indicateur « Moteur » en haut de l'outil passe au violet quand tout est prêt. Avec une clé Anthropic dans le fichier .env, l'application utilise Claude à la place.",
   },
 ]
 
@@ -284,7 +284,7 @@ export function Cta() {
             Ne laissez pas un texte maladroit gâcher vos efforts
           </h2>
           <p className="relative mx-auto mt-6 max-w-xl text-lg leading-8 text-indigo-100">
-            Tout fonctionne en local, avec ta propre clé API. Aucun compte, aucune carte bancaire.
+            Tout fonctionne en local et gratuitement. Aucun compte, aucune carte bancaire.
           </p>
           <div className="relative mt-10 flex items-center justify-center gap-x-6">
             <button
@@ -335,7 +335,7 @@ export function Footer() {
           <div>
             <h3 className="mb-4 text-sm font-semibold tracking-wider text-gray-900 uppercase">Technique</h3>
             <ul className="space-y-3 text-sm text-gray-600">
-              <li>Propulsé par Claude (Anthropic)</li>
+              <li>IA locale avec Ollama</li>
               <li>PDF lus dans le navigateur</li>
             </ul>
           </div>
